@@ -1,4 +1,4 @@
-# oauth2-phalcon
+# OAuth2 Server
 OAuth 2 server for Phalcon Framework
 
 ## Installation
