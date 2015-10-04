@@ -1,7 +1,7 @@
 {
     "name": "ivyhjk/oauth2-phalcon",
     "description": "OAuth 2 Server and Client for Phalcon Framework",
-    "license": "GPL",
+    "license": "MIT",
     "authors": [
         {
             "name": "Ivyhjk",
