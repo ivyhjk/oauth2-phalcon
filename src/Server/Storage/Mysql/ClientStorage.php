@@ -6,7 +6,7 @@ use League\OAuth2\Server\Entity\SessionEntity;
 use League\OAuth2\Server\Storage\ClientInterface;
 
 class ClientStorage extends BaseStorage implements ClientInterface {
-	/**
+    /**
      * Validate a client
      *
      * @param string $clientId     The client's ID
@@ -18,7 +18,7 @@ class ClientStorage extends BaseStorage implements ClientInterface {
      */
     public function get($clientId, $clientSecret = null, $redirectUri = null, $grantType = null)
     {
-    	dd(1);
+        dd(1);
     }
 
     /**
@@ -30,6 +30,6 @@ class ClientStorage extends BaseStorage implements ClientInterface {
      */
     public function getBySession(SessionEntity $session)
     {
-    	dd(2);
+        dd(2);
     }
 }

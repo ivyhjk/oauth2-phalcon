@@ -16,6 +16,6 @@ class ScopeStorage extends BaseStorage implements ScopeInterface {
      */
     public function get($scope, $grantType = null, $clientId = null)
     {
-    	dd(1);
+        dd(1);
     }
 }

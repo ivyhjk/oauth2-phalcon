@@ -19,7 +19,7 @@ class ResourceServer extends LeagueResourceServer implements InjectionAwareInter
      **/
     private $dependencyInjector = null;
 
-	/**
+    /**
      * Initialise the resource server
      *
      * @param \League\OAuth2\Server\Storage\SessionInterface $sessionStorage

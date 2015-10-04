@@ -9,7 +9,7 @@ use League\OAuth2\Server\Storage\AccessTokenInterface;
 use Ivyhjk\Oauth2\Phalcon\Server\Storage\BaseStorage;
 
 class AccessToken extends BaseStorage implements AccessTokenInterface {
-	/**
+    /**
      * Get an instance of Entity\AccessTokenEntity
      *
      * @param string $token The access token

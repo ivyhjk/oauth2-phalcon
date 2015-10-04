@@ -33,7 +33,7 @@ class Client extends BaseStorage implements ClientInterface {
         $this->limitClientsToGrant = $limitClientsToGrant;
     }
 
-	/**
+    /**
      * Validate a client
      *
      * @param string $clientId The client's ID

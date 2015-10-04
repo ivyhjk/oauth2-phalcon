@@ -11,7 +11,7 @@ use League\OAuth2\Server\Storage\SessionInterface;
 use Ivyhjk\Oauth2\Phalcon\Server\Storage\BaseStorage;
 
 class Session extends BaseStorage implements SessionInterface {
-	/**
+    /**
      * Get a session from an access token
      *
      * @param \League\OAuth2\Server\Entity\AccessTokenEntity $accessToken The access token
@@ -20,7 +20,7 @@ class Session extends BaseStorage implements SessionInterface {
      **/
     public function getByAccessToken(AccessTokenEntity $accessToken)
     {
-    	dd(1);
+        dd(1);
     }
 
     /**
@@ -32,7 +32,7 @@ class Session extends BaseStorage implements SessionInterface {
      **/
     public function getByAuthCode(AuthCodeEntity $authCode)
     {
-    	dd(2);
+        dd(2);
     }
 
     /**
@@ -51,7 +51,7 @@ class Session extends BaseStorage implements SessionInterface {
         }
 
         dd(compact('session_id', 'session'));
-    	dd(3);
+        dd(3);
 
          // TODO: Check this before pushing
         $result = $this->getConnection()->table('oauth_session_scopes')

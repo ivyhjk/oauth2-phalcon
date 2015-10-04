@@ -10,7 +10,7 @@ use League\OAuth2\Server\Entity\AccessTokenEntity;
 use League\OAuth2\Server\Storage\SessionInterface;
 
 class SessionStorage extends BaseStorage implements SessionInterface {
-	/**
+    /**
      * Get a session from an access token
      *
      * @param \League\OAuth2\Server\Entity\AccessTokenEntity $accessToken The access token
@@ -19,7 +19,7 @@ class SessionStorage extends BaseStorage implements SessionInterface {
      */
     public function getByAccessToken(AccessTokenEntity $accessToken)
     {
-    	dd(1);
+        dd(1);
     }
 
     /**
@@ -31,7 +31,7 @@ class SessionStorage extends BaseStorage implements SessionInterface {
      */
     public function getByAuthCode(AuthCodeEntity $authCode)
     {
-    	dd(2);
+        dd(2);
     }
 
     /**
@@ -43,7 +43,7 @@ class SessionStorage extends BaseStorage implements SessionInterface {
      */
     public function getScopes(SessionEntity $session)
     {
-    	dd(3);
+        dd(3);
     }
 
     /**
@@ -58,7 +58,7 @@ class SessionStorage extends BaseStorage implements SessionInterface {
      */
     public function create($ownerType, $ownerId, $clientId, $clientRedirectUri = null)
     {
-    	dd(4);
+        dd(4);
     }
 
     /**
@@ -71,6 +71,6 @@ class SessionStorage extends BaseStorage implements SessionInterface {
      */
     public function associateScope(SessionEntity $session, ScopeEntity $scope)
     {
-    	dd(5);
+        dd(5);
     }
 }

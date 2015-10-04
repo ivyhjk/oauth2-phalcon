@@ -7,7 +7,7 @@ use League\OAuth2\Server\Entity\AccessTokenEntity;
 use League\OAuth2\Server\Storage\AccessTokenInterface;
 
 class AccessTokenStorage extends BaseStorage implements AccessTokenInterface {
-	/**
+    /**
      * Get an instance of Entity\AccessTokenEntity
      *
      * @param string $token The access token
