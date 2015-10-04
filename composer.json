@@ -1,0 +1,13 @@
+{
+    "name": "ivyhjk/oauth2-phalcon",
+    "description": "OAuth 2 Server and Client for Phalcon Framework",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Ivyhjk",
+            "email": "elvis.munoz.f@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
