@@ -9,5 +9,13 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {}
+    "require": {
+        "php": ">=5.5.9",
+        "ext-phalcon": "~2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ivyhjk\\Oauth2\\Phalcon\\": "src"
+        }
+    }
 }
