@@ -1,11 +1,11 @@
 <?php
 
-namespace Ivyhjk\Oauth2\Phalcon\Server\Storage\Mongo;
+namespace Ivyhjk\OAuth2\Phalcon\Server\Storage\Mongo;
 
 use League\OAuth2\Server\Entity\RefreshTokenEntity;
 use League\OAuth2\Server\Storage\RefreshTokenInterface;
 
-use Ivyhjk\Oauth2\Phalcon\Server\Storage\BaseStorage;
+use Ivyhjk\OAuth2\Phalcon\Server\Storage\BaseStorage;
 
 class RefreshToken extends BaseStorage implements RefreshTokenInterface {
     /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace Ivyhjk\Oauth2\Phalcon\Server\Storage;
+namespace Ivyhjk\OAuth2\Phalcon\Server\Storage;
 
 use League\OAuth2\Server\Entity\RefreshTokenEntity;
 use League\OAuth2\Server\Storage\RefreshTokenInterface;

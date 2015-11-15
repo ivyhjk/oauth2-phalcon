@@ -1,6 +1,6 @@
 <?php
 
-namespace Ivyhjk\Oauth2\Phalcon\Server;
+namespace Ivyhjk\OAuth2\Phalcon\Server;
 
 use Phalcon\DiInterface;
 use Phalcon\Di\InjectionAwareInterface;

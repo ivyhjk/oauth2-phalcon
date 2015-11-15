@@ -1,13 +1,13 @@
 <?php
 
-namespace Ivyhjk\Oauth2\Phalcon\Server\Storage\Mongo;
+namespace Ivyhjk\OAuth2\Phalcon\Server\Storage\Mongo;
 
 use League\OAuth2\Server\Entity\ClientEntity;
 use League\OAuth2\Server\Entity\SessionEntity;
 use League\OAuth2\Server\Storage\ClientInterface;
 use League\OAuth2\Server\Exception\InvalidGrantException;
 
-use Ivyhjk\Oauth2\Phalcon\Server\Storage\BaseStorage;
+use Ivyhjk\OAuth2\Phalcon\Server\Storage\BaseStorage;
 
 class Client extends BaseStorage implements ClientInterface {
 

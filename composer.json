@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Ivyhjk\\Oauth2\\Phalcon\\": "src"
+            "Ivyhjk\\OAuth2\\Phalcon\\": "src"
         }
     }
 }

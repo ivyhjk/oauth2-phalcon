@@ -1,6 +1,6 @@
 <?php
 
-namespace Ivyhjk\Oauth2\Phalcon\Server;
+namespace Ivyhjk\OAuth2\Phalcon\Server;
 
 use League\OAuth2\Server\AuthorizationServer as LeagueAuthorizationServer;
 

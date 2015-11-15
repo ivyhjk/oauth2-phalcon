@@ -1,11 +1,11 @@
 <?php
 
-namespace Ivyhjk\Oauth2\Phalcon\Server\Storage\Mongo;
+namespace Ivyhjk\OAuth2\Phalcon\Server\Storage\Mongo;
 
 use League\OAuth2\Server\Entity\ScopeEntity;
 use League\OAuth2\Server\Storage\ScopeInterface;
 
-use Ivyhjk\Oauth2\Phalcon\Server\Storage\BaseStorage;
+use Ivyhjk\OAuth2\Phalcon\Server\Storage\BaseStorage;
 
 class Scope extends BaseStorage implements ScopeInterface {
 

@@ -1,24 +1,24 @@
 <?php
 
-namespace Ivyhjk\Oauth2\Phalcon\Server;
+namespace Ivyhjk\OAuth2\Phalcon\Server;
 
 use Phalcon\Mvc\User\Plugin;
 
-use Ivyhjk\Oauth2\Phalcon\Server\ResourceServer;
-use Ivyhjk\Oauth2\Phalcon\Server\AuthorizationServer;
+use Ivyhjk\OAuth2\Phalcon\Server\ResourceServer;
+use Ivyhjk\OAuth2\Phalcon\Server\AuthorizationServer;
 
 class Authorizer extends Plugin {
     /**
      * Resource server.
      *
-     * @var \Ivyhjk\Oauth2\Phalcon\Server\ResourceServer
+     * @var \Ivyhjk\OAuth2\Phalcon\Server\ResourceServer
      **/
     private $ResourceServer = null;
 
     /**
      * Authorization server.
      *
-     * @var \Ivyhjk\Oauth2\Phalcon\Server\AuthorizationServer
+     * @var \Ivyhjk\OAuth2\Phalcon\Server\AuthorizationServer
      **/
     private $AuthorizationServer = null;
 
@@ -60,7 +60,7 @@ class Authorizer extends Plugin {
 
         // Setup configs.
         // Default storage adapter namespace.
-        $this->setStorageAdapter("\\Ivyhjk\\Oauth2\\Phalcon\\Server\\Storage\\{$this->config['storage']}");
+        $this->setStorageAdapter("\\Ivyhjk\\OAuth2\\Phalcon\\Server\\Storage\\{$this->config['storage']}");
     }
 
     private function setStorageAdapter($adapterNamespace)
@@ -73,7 +73,7 @@ class Authorizer extends Plugin {
     /**
      * Return an instance of Resource Server for requests.
      *
-     * @return \Ivyhjk\Oauth2\Phalcon\Server\ResourceServer
+     * @return \Ivyhjk\OAuth2\Phalcon\Server\ResourceServer
      **/
     public function getResourceServer()
     {
@@ -101,7 +101,7 @@ class Authorizer extends Plugin {
     /**
      * Return an instance of Authorization Server for requests.
      *
-     * @return \Ivyhjk\Oauth2\Phalcon\Server\AuthorizationServer
+     * @return \Ivyhjk\OAuth2\Phalcon\Server\AuthorizationServer
      **/
     public function getAuthorizationServer()
     {
@@ -126,7 +126,7 @@ class Authorizer extends Plugin {
     /**
      * Enable all available grants for Authorization server.
      *
-     * @return \Ivyhjk\Oauth2\Phalcon\Server\AuthorizationServer
+     * @return \Ivyhjk\OAuth2\Phalcon\Server\AuthorizationServer
      **/
     public function enableGrants()
     {
@@ -165,7 +165,7 @@ class Authorizer extends Plugin {
     /**
      * Return a scope storage instance.
      *
-     * @return \Ivyhjk\Oauth2\Phalcon\Server\Storage\Scope
+     * @return \Ivyhjk\OAuth2\Phalcon\Server\Storage\Scope
      **/
     public function getScopeStorage()
     {
@@ -181,7 +181,7 @@ class Authorizer extends Plugin {
     /**
      * Return a client storage instance.
      *
-     * @return \Ivyhjk\Oauth2\Phalcon\Server\Storage\Client
+     * @return \Ivyhjk\OAuth2\Phalcon\Server\Storage\Client
      **/
     public function getClientStorage()
     {
@@ -197,7 +197,7 @@ class Authorizer extends Plugin {
     /**
      * Return a session storage instance.
      *
-     * @return \Ivyhjk\Oauth2\Phalcon\Server\Storage\Session
+     * @return \Ivyhjk\OAuth2\Phalcon\Server\Storage\Session
      **/
     public function getSessionStorage()
     {
@@ -213,7 +213,7 @@ class Authorizer extends Plugin {
     /**
      * Return an acces token storage instance.
      *
-     * @return \Ivyhjk\Oauth2\Phalcon\Server\Storage\AccessToken
+     * @return \Ivyhjk\OAuth2\Phalcon\Server\Storage\AccessToken
      **/
     public function getAccessTokenStorage()
     {
@@ -229,7 +229,7 @@ class Authorizer extends Plugin {
     /**
      * Return an refresh token storage instance.
      *
-     * @return \Ivyhjk\Oauth2\Phalcon\Server\Storage\RefreshToken
+     * @return \Ivyhjk\OAuth2\Phalcon\Server\Storage\RefreshToken
      **/
     public function getRefreshTokenStorage()
     {
