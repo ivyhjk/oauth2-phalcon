@@ -8,6 +8,7 @@ use League\OAuth2\Server\Storage\ScopeInterface;
 use League\OAuth2\Server\Storage\ClientInterface;
 use League\OAuth2\Server\Storage\SessionInterface;
 use League\OAuth2\Server\Storage\AccessTokenInterface;
+use League\OAuth2\Server\Exception\InvalidRequestException;
 
 use League\OAuth2\Server\ResourceServer as LeagueResourceServer;
 
@@ -66,32 +67,34 @@ class ResourceServer extends LeagueResourceServer implements InjectionAwareInter
      *
      * @param bool $headerOnly Limit Access Token to Authorization header
      *
-     * @throws \League\OAuth2\Server\Exception\InvalidRequestException Thrown if there is no access token presented
-     *
      * @return string
-     */
+     *
+     * @throws \League\OAuth2\Server\Exception\InvalidRequestException Thrown if there is no access token presented
+     **/
     public function determineAccessToken($headerOnly = false)
     {
-        // $request = $this->getDi()->get('request');
+        $request = $this->getDi()->get('request');
 
-        // // print_r($request->getHeaders());
+        $accessToken = null;
 
-        // // exit();
-        // // dd(get_class_methods($request));
+        if ($request->getHeader('Authorization')) {
+            dd('REQUEST TOKEN IN HEADER!.');
+        } else if ($headerOnly === false) {
+            $method = 'get';
 
-        // dd($this->getRequest()->headers);
+            switch ($request->getMethod()) {
+                case 'PUT':
+                    $method .= 'Put';
+                break;
+                case 'POST':
+                    $method .= 'Post';
+                break;
+            }
 
-        return parent::determineAccessToken($headerOnly);
-
-        if ($this->getRequest()->headers->get('Authorization') !== null) {
-            $accessToken = $this->getTokenType()->determineAccessTokenInHeader($this->getRequest());
-        } elseif ($headerOnly === false) {
-            $accessToken = ($this->getRequest()->server->get('REQUEST_METHOD') === 'GET')
-                                ? $this->getRequest()->query->get($this->tokenKey)
-                                : $this->getRequest()->request->get($this->tokenKey);
+            $accessToken = $request->{$method}($this->tokenKey);
         }
 
-        if (empty($accessToken)) {
+        if ( ! $accessToken) {
             throw new InvalidRequestException('access token');
         }
 

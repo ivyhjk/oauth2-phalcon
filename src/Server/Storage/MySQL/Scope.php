@@ -1,10 +1,12 @@
 <?php
 
-namespace Ivyhjk\OAuth2\Phalcon\Server\Storage;
+namespace Ivyhjk\OAuth2\Phalcon\Server\Storage\MySQL;
 
 use League\OAuth2\Server\Storage\ScopeInterface;
 
-class ScopeStorage extends BaseStorage implements ScopeInterface {
+use Ivyhjk\OAuth2\Phalcon\Server\Storage\BaseStorage;
+
+class Scope extends BaseStorage implements ScopeInterface {
     /**
      * Return information about a scope
      *

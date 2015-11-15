@@ -56,7 +56,7 @@ class Authorizer extends Plugin {
         $this->database = $database;
 
         // Merge default configs with user configurations.
-        $this->config = array_merge($this->config, $configurations);
+        $this->config = array_merge($this->config, (array) $configurations);
 
         // Setup configs.
         // Default storage adapter namespace.
@@ -133,29 +133,28 @@ class Authorizer extends Plugin {
         $authorizationServer = $this->getAuthorizationServer();
 
         foreach ($this->config['grants'] as $name => $class) {
-            $grant = new $class();
+            $isObject = is_object($class);
+
+            if ($isObject && isset($class->class)) {
+                $grant = new $class->class();
+            } else if (is_string($class)) {
+                $grant = new $class();
+            }
 
             $authorizationServer->addGrantType($grant);
 
             if ($grant instanceof \League\OAuth2\Server\Grant\PasswordGrant) {
-                $grant->setVerifyCredentialsCallback(function ($username, $password) {
-                    $user = \App\Models\User::findFirst([
-                        'fields' => [
-                            '_id',
-                            'username',
-                            'password',
-                        ],
-                        'conditions' => [
-                            'username' => $username
-                        ]
-                    ]);
+                if ($isObject) {
+                    $callback = $class->callback;
 
-                    if ($user === false || $this->getDi()->get('security')->checkHash($password, $user->password) === false) {
-                        return false;
+                    if ( ! $callback) {
+                        throw new \Exception('A credentialas verify callback is necesary!.');
                     }
 
-                    return $user->username;
-                });
+                    $grant->setVerifyCredentialsCallback($class->callback);
+                } else {
+                    throw new \Exception('A credentialas verify callback is necesary!.');
+                }
             }
         }
 
@@ -190,8 +189,8 @@ class Authorizer extends Plugin {
         }
 
         $storageClass = "{$this->storageAdapter}\\Client";
-        
-        return new $storageClass($this->database);
+
+        return new $storageClass($this->database, $this->config['limit_clients_to_grants']);
     }
 
     /**
