@@ -151,7 +151,17 @@ class Authorizer extends Plugin {
                         throw new \Exception('A credentialas verify callback is necesary!.');
                     }
 
-                    $grant->setVerifyCredentialsCallback($class->callback);
+                    if (is_string($callback)) {
+                        $callbackPossibleInstance = explode('@', $callback);
+
+                        $controller = new $callbackPossibleInstance[0];
+                        $method = $callbackPossibleInstance[1];
+
+                        // $callback = call_user_func([$controller, $method]);
+                        $callback = [$controller, $method];
+                    }
+
+                    $grant->setVerifyCredentialsCallback($callback);
                 } else {
                     throw new \Exception('A credentialas verify callback is necesary!.');
                 }
@@ -173,8 +183,8 @@ class Authorizer extends Plugin {
         }
 
         $storageClass = "{$this->storageAdapter}\\Scope";
-        
-        return new $storageClass($this->database);
+
+        return new $storageClass($this->database, $this->config['limit_clients_to_scopes'], $this->config['limit_scopes_to_grants']);
     }
 
     /**

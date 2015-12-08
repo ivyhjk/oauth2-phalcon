@@ -14,33 +14,29 @@ class AccessToken extends BaseStorage implements AccessTokenInterface {
      *
      * @param string $token The access token
      *
-     * @return [\League\OAuth2\Server\Entity\AccessTokenEntity|null]
-     */
+     * @return mixed [\League\OAuth2\Server\Entity\AccessTokenEntity|null]
+     **/
     public function get($token)
     {
-        $query = $this->getDatabase()
-            ->prepare('SELECT * FROM oauth_access_tokens AS Token WHERE Token.id = :token_id');
-
-        $query->execute([
-            ':token_id' => $token
-        ]);
-
-        $result = $query->fetch();
-
-        dd('D:');
+        $result = $this->getDatabase()->createBuilder()
+            ->columns([
+                'AccessToken.id',
+                'AccessToken.expire_time',
+            ])
+            ->addFrom(\Ivyhjk\OAuth2\Phalcon\Models\AccessToken::class, 'AccessToken')
+            ->where('AccessToken.id = :token:', compact('token'))
+            ->getQuery()
+            ->getSingleResult();
 
         if ($result === false) {
             return null;
         }
 
-        dd($result);
+        $entity = new AccessTokenEntity($this->server);
 
-        dd(get_class_methods($this->getDatabase()));
-        var_dump(get_class_methods($test));
-
-        $result = $test->fetch();
-
-        dd($result);
+        return $entity
+            ->setId($result->id)
+            ->setExpireTime((int) $result->expire_time);
     }
 
     /**
@@ -100,15 +96,20 @@ class AccessToken extends BaseStorage implements AccessTokenInterface {
         $accessToken = new \Ivyhjk\OAuth2\Phalcon\Models\AccessToken();
         $accessToken->id = $token;
         $accessToken->expire_time = $expireTime;
-        $accessToken->sessionId = $sessionId;
+        $accessToken->session_id = $sessionId;
         $accessToken->created_at = date('Y-m-d H:i:s');
-        $accessToken->save();
+
+        try {
+            $saved = $accessToken->save();
+        } catch (\Exception $e) {
+            // dd($e);
+        }
 
         $entity = new AccessTokenEntity($this->server);
 
         $entity
             ->setId($token)
-            ->setExpireTime((int) $expireTime);
+            ->setExpireTime($expireTime);
 
         return $entity;
     }
@@ -123,7 +124,12 @@ class AccessToken extends BaseStorage implements AccessTokenInterface {
      */
     public function associateScope(AccessTokenEntity $token, ScopeEntity $scope)
     {
-        dd(4);
+        $accessTokenScope = new \Ivyhjk\OAuth2\Phalcon\Models\AccessTokenScope();
+        $accessTokenScope->access_token_id = $token->getId();
+        $accessTokenScope->scope_id = $scope->getId();
+        $accessTokenScope->created_at = date('Y-m-d H:i:s');
+
+        $accessTokenScope->save();
     }
 
     /**

@@ -50,8 +50,8 @@ class Session extends BaseStorage implements SessionInterface {
                 'Scope.id',
                 'Scope.description',
             ])
-            ->addFrom('\\Ivyhjk\\OAuth2\\Phalcon\\Models\\SessionScope', 'SessionScope')
-            ->join('\\Ivyhjk\\OAuth2\\Phalcon\\Models\\Scope', 'Scope.id = SessionScope.scope_id', 'Scope')
+            ->addFrom(\Ivyhjk\OAuth2\Phalcon\Models\SessionScope::class, 'SessionScope')
+            ->join(\Ivyhjk\OAuth2\Phalcon\Models\Scope::class, 'Scope.id = SessionScope.scope_id', 'Scope')
             ->where('SessionScope.session_id = :session_id:', [
                 'session_id' => $session->getId()
             ]);
@@ -67,23 +67,6 @@ class Session extends BaseStorage implements SessionInterface {
         }
 
         return $scopes;
-        /*
-
-        $result = $this->getConnection()->table('oauth_session_scopes')
-                  ->select('oauth_scopes.*')
-                  ->join('oauth_scopes', 'oauth_session_scopes.scope_id', '=', 'oauth_scopes.id')
-                  ->where('oauth_session_scopes.session_id', $session->getId())
-                  ->get();
-        $scopes = [];
-        foreach ($result as $scope) {
-            $scopes[] = (new ScopeEntity($this->getServer()))->hydrate([
-                'id' => $scope->id,
-                'description' => $scope->description,
-            ]);
-        }
-        return $scopes;
-
-        */
     }
 
     /**
@@ -119,6 +102,12 @@ class Session extends BaseStorage implements SessionInterface {
      */
     public function associateScope(SessionEntity $session, ScopeEntity $scope)
     {
-        dd(5);
+
+        $sessionScope = new \Ivyhjk\OAuth2\Phalcon\Models\SessionScope();
+        $sessionScope->session_id = $session->getId();
+        $sessionScope->scope_id = $scope->getId();
+        $sessionScope->created_at = date('Y-m-d H:i:s');
+
+        $sessionScope->save();
     }
 }

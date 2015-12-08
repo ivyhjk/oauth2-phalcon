@@ -66,7 +66,7 @@ class AuthorizationServer extends LeagueAuthorizationServer {
     public function issueAccessToken()
     {
         $grantType = $this->getParam('grant_type');
-        
+
         if ($grantType === null) {
             throw new InvalidRequestException('grant_type');
         }

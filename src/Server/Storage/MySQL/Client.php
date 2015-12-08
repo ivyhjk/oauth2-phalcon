@@ -49,7 +49,7 @@ class Client extends BaseStorage implements ClientInterface {
         $builder = $this->getDatabase()->createBuilder();
 
         $builder
-            ->addFrom('\\Ivyhjk\\OAuth2\\Phalcon\\Models\\Client', 'Client');
+            ->addFrom(\Ivyhjk\OAuth2\Phalcon\Models\Client::class, 'Client');
 
         if ($redirectUri !== null && $clientSecret === null) {
             dd(1);
@@ -68,8 +68,8 @@ class Client extends BaseStorage implements ClientInterface {
 
         if ($this->limitClientsToGrants === true && $grantType !== null) {
             $builder
-                ->innerJoin('\\Ivyhjk\\OAuth2\\Phalcon\\Models\\ClientGrant', 'ClientGrant.client_id = Client.id', 'ClientGrant')
-                ->innerJoin('\\Ivyhjk\\OAuth2\\Phalcon\\Models\\Grant', 'Grant.id = ClientGrant.grant_id', 'Grant')
+                ->innerJoin(\Ivyhjk\OAuth2\Phalcon\Models\ClientGrant::class, 'ClientGrant.client_id = Client.id', 'ClientGrant')
+                ->innerJoin(\Ivyhjk\OAuth2\Phalcon\Models\Grant::class, 'Grant.id = ClientGrant.grant_id', 'Grant')
                 ->andWhere('Grant.id = :grantType:', compact('grantType'));
         }
 

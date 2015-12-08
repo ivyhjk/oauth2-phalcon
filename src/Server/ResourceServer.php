@@ -78,7 +78,7 @@ class ResourceServer extends LeagueResourceServer implements InjectionAwareInter
         $accessToken = null;
 
         if ($request->getHeader('Authorization')) {
-            dd('REQUEST TOKEN IN HEADER!.');
+            $accessToken = $this->getTokenType()->determineAccessTokenInHeader($this->getRequest());
         } else if ($headerOnly === false) {
             $method = 'get';
 

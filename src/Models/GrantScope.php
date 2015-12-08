@@ -2,11 +2,11 @@
 
 namespace Ivyhjk\OAuth2\Phalcon\Models;
 
-class AccessTokenScope extends BaseModel {
+class GrantScope extends BaseModel {
     public function initialize()
     {
         parent::initialize();
 
-        $this->setSource('oauth_access_token_scopes');
+        $this->setSource('oauth_grant_scopes');
     }
 }
