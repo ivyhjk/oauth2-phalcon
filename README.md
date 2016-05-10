@@ -3,8 +3,6 @@ OAuth 2 server for Phalcon Framework.
 
 Based on:
   - https://github.com/thephpleague/oauth2-server
-  - https://github.com/sumeko/phalcon-oauth2-server
-  - https://github.com/lucadegasperi/oauth2-server-laravel
 
 ## Installation
 
