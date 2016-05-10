@@ -1,22 +1,23 @@
 {
-    "name": "ivyhjk/oauth2-phalcon",
-    "description": "OAuth 2 Server and Client for Phalcon Framework",
-    "license": "MIT",
+    "version" : "2.0.0-alpha",
+    "name": "ivyhjk/oauth2-server",
+    "description": "OAuth2 standard adapted for Phalcon framework",
     "authors": [
         {
             "name": "Ivyhjk",
             "email": "elvis.munoz.f@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
     "require": {
-        "php": ">=5.5.9",
         "ext-phalcon": "~2.0",
-        "league/oauth2-server": "4.1.*"
+        "league/oauth2-server" : "5.0.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.1"
     },
     "autoload": {
-        "psr-4": {
-            "Ivyhjk\\OAuth2\\Phalcon\\": "src"
+        "psr-4" : {
+            "Ivyhjk\\OAuth2\\Server\\" : "src/"
         }
     }
 }
